@@ -15,9 +15,9 @@ class ClearancingService
   def process_list(list)
     clearancing_status = create_clearancing_status
     items = list.split(",")
-    items.reject! { |c| c.empty? || (Integer(c) rescue nil).nil? }
+    items.reject! { |c| c.empty? }
     items.each {|item|
-      item = item.to_i
+      item = item.to_i if !(Integer(item) rescue nil).nil?
       clearancing_status = process_item(item, clearancing_status)
     }
     clearance_items!(clearancing_status) 
