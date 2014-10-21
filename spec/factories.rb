@@ -1,8 +1,16 @@
-FactoryGirl.define do
-
+FactoryGirl.define do  
+  
+  factory :clearance_batch_item do
+    batch_id 1
+    item nil
+    status "Clearance"
+  end
+  
+  
   factory :clearance_batch do
 
   end
+
 
   factory :item do
     style
@@ -11,18 +19,22 @@ FactoryGirl.define do
     status "sellable"
   end
 
+
   factory :style do
     wholesale_price 55
   end
+
 
   factory :style_dress, class: Style do
     type "Dress"
   end
 
+
   factory :style_pants, class: Style do
     type "Pants"
     wholesale_price 6
   end
+
   
   factory :style_scarf, class: Style do
     type "Scarf"

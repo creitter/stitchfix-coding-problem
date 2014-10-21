@@ -1,3 +1,19 @@
+<script>
+$(function() { 
+  $('.show-all').click(function(event) { 
+    showAllEvent(event, this, "<%= show_all_items_path %>")
+  });
+  
+  $('#scanned_item_add').click(function(event){
+    event.stopPropagation();
+    event.preventDefault();
+    $('#scanned_items')
+    alert($('#scanned_item').val());
+  });
+  
+});
+</script>
+
 <h2>Clearance Batches</h2>
 
 <%= form_tag(clearance_batches_path, multipart: true, class: 'form-inline', role: 'form') do %>
@@ -7,6 +23,14 @@
   </div>
   <%= button_tag 'upload batch file', class: 'btn btn-primary' %>
 <% end %>
+
+<div style="padding:50px 0 ">
+OR <br>
+Enter/Scan in the barcode and it'll be added to the right.
+<%= text_field_tag 'scanned_item' %>
+<%= button_tag 'Add', type:'button', id:'scanned_item_add' %>
+<%= text_area_tag 'scanned_items'%>
+</div>
 
 <table class="table table-striped clearance_batches">
   <thead>
@@ -21,7 +45,9 @@
       <tr>
         <td>Clearance Batch <%= clearance_batch.id %></td>
         <td><%= l(clearance_batch.created_at, format: :short) %></td>
-        <td><%= clearance_batch.items.count %></td>
+        <td><%= clearance_batch.items.count %>
+            <%= link_to "Show Items", show_all_items_path, class: "show-all", data: {batch_id: "#{clearance_batch.id}"}%>
+        </td>
       </tr>
     <%- end -%>
   </tbody>

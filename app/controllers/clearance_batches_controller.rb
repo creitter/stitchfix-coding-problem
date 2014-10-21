@@ -20,5 +20,26 @@ class ClearanceBatchesController < ApplicationController
     flash[:alert] = alert_messages.join("<br/>") if alert_messages.any?
     redirect_to action: :index
   end
+  
+  
+  def show_all_items
+    batch_id = params[:batch_id]
+    
+    if batch_id.present? && batch_id.to_i == Integer(batch_id)
+      batch = ClearanceBatch.where(id: batch_id).first
+      if !batch.nil?
+        items = []
+        batch.items.each {|item|
+
+          items << {item: item, style: item.style}
+        }
+      end
+    end
+    
+    items ||= []
+    
+    render json: {items: items}, status: :ok
+  end
+  
 
 end

@@ -1,0 +1,26 @@
+<script>
+$(function() { 
+  $("#items").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+});
+</script>
+
+<table id="items" class="table table-striped items tablesorter">
+  <thead>
+    <tr>
+      <th class="header">Item ID</th>
+      <th class="header">Status</th>
+      <th class="header">Style Type</th>
+      <th class="header">Batch Id</<th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @items.each do |item| -%>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.status %></td>
+        <td><%= item.style.type %></td>
+        <td><%= item.clearance_batch_id%> </td>
+      </tr>
+    <%- end -%>
+  </tbody>
+</table>
