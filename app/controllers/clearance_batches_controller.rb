@@ -5,7 +5,12 @@ class ClearanceBatchesController < ApplicationController
   end
 
   def create
-    clearancing_status = ClearancingService.new.process_file(params[:csv_batch_file].tempfile)
+    if params[:csv_batch_file].present?
+      clearancing_status = ClearancingService.new.process_file(params[:csv_batch_file].tempfile)
+    else
+      clearancing_status = ClearancingService.new.process_list(params[:scanned_items])
+    end
+    
     clearance_batch    = clearancing_status.clearance_batch
     alert_messages     = []
     if clearance_batch.persisted?

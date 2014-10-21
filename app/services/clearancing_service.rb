@@ -6,18 +6,35 @@ class ClearancingService
     clearancing_status      = create_clearancing_status
     CSV.foreach(uploaded_file, headers: false) do |row|  
       potential_item_id = row[0].to_i
-      clearancing_error = what_is_the_clearancing_error?(potential_item_id)
-      if clearancing_error
-        clearancing_status.errors << clearancing_error
-      else
-        clearancing_status.item_ids_to_clearance << potential_item_id
-      end
+      clearancing_status = process_item(potential_item_id, clearancing_status)
     end
 
     clearance_items!(clearancing_status) 
   end
 
+  def process_list(list)
+    clearancing_status = create_clearancing_status
+    items = list.split(",")
+    items.reject! { |c| c.empty? || (Integer(c) rescue nil).nil? }
+    items.each {|item|
+      item = item.to_i
+      clearancing_status = process_item(item, clearancing_status)
+    }
+    clearance_items!(clearancing_status) 
+  end
+  
 private
+
+  def process_item(item, clearancing_status) 
+    clearancing_error = what_is_the_clearancing_error?(item)
+    if clearancing_error
+      clearancing_status.errors << clearancing_error
+    else
+      clearancing_status.item_ids_to_clearance << item
+    end
+    
+    clearancing_status
+  end
 
   def clearance_items!(clearancing_status)
     if clearancing_status.item_ids_to_clearance.any? 

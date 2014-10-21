@@ -7,10 +7,21 @@ $(function() {
   $('#scanned_item_add').click(function(event){
     event.stopPropagation();
     event.preventDefault();
-    $('#scanned_items')
-    alert($('#scanned_item').val());
+    $('#scanned_items').val($('#scanned_items').val() + "," + $('#scanned_item').val());
+    $('#scanned_item').val('');
   });
   
+  
+  $('#scanned_item').bind("enterKey",function(e){
+    $('#scanned_item_add').click();
+  });
+
+  $('#scanned_item').keyup(function(e){
+      if(e.keyCode == 13)
+      {
+          $(this).trigger("enterKey");
+      }
+  });
 });
 </script>
 
@@ -26,10 +37,15 @@ $(function() {
 
 <div style="padding:50px 0 ">
 OR <br>
-Enter/Scan in the barcode and it'll be added to the right.
+Enter/Scan in the barcode and it'll be added to the right.<br>
 <%= text_field_tag 'scanned_item' %>
 <%= button_tag 'Add', type:'button', id:'scanned_item_add' %>
-<%= text_area_tag 'scanned_items'%>
+
+<%= form_tag(clearance_batches_path, role: 'form', style: "display:inline") do %>
+  <%= text_area_tag 'scanned_items', nil, size: "35x10"%>
+  <%= button_tag 'Start batch'%>
+<% end %>
+
 </div>
 
 <table class="table table-striped clearance_batches">

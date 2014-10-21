@@ -1,16 +1,8 @@
 FactoryGirl.define do  
   
-  factory :clearance_batch_item do
-    batch_id 1
-    item nil
-    status "Clearance"
-  end
-  
-  
   factory :clearance_batch do
 
   end
-
 
   factory :item do
     style

@@ -36,14 +36,9 @@ currently works.
 We'd like you to make some improvements, specifically:
 
 - DONE We're selling some items for less than we'd like, so we want to set a minimum price for items whose clearance discount is too low.  For pants and dresses, ensure they don't sell for less than $5. For all other items the minimum price is $2.
-
 - DONE The vendor buying the items on clearance needs to know what they've just purchased, so please provide a report for each batch about what items were clearanced.
-
-
-- Users should be able to browse items and see them grouped by status or by batch.
-
-
-- Finally, we'd like to avoid requiring that users create a spreadsheet and upload it, and instead handle this process directly in the app.  Since they can scan an item's barcode into any text field (as if typed directly by a keyboard), we'd like to try allowing them to create batches and clearancing them simply by entering item IDs. We'd want to support both methods of clearancing batches for the time being.  You can assume the barcode scanner works just like a computer keyboard, so if your solution works by entering text with a keyboard, it will be fine for the purposes described here, i.e. don't worry about barcodes.
+- DONE Users should be able to browse items and see them grouped by status or by batch.
+- DONE Finally, we'd like to avoid requiring that users create a spreadsheet and upload it, and instead handle this process directly in the app.  Since they can scan an item's barcode into any text field (as if typed directly by a keyboard), we'd like to try allowing them to create batches and clearancing them simply by entering item IDs. We'd want to support both methods of clearancing batches for the time being.  You can assume the barcode scanner works just like a computer keyboard, so if your solution works by entering text with a keyboard, it will be fine for the purposes described here, i.e. don't worry about barcodes.
 
 # Tech Specs:
 
@@ -57,5 +52,10 @@ We'd like you to make some improvements, specifically:
 * If you need to make an assumption about a vague requirement, feel free, just state what it is.
 
 
-# Corinne's Refactor Notes
+# Corinne's  Notes
 * Style.type should be normalized.
+* Fix show items appending (when multiple lists to show.)
+* Make it prettier
+* Write Tests 
+* CSS for sorting signifier
+

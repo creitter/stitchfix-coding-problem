@@ -4,3 +4,6 @@ log/*.log
 .bundle
 tmp
 db/*.sqlite3
+public/assets
+Gemfile.lock
+

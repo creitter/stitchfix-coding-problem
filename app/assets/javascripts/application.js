@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require jquery
 //= require bootstrap-sprockets
-//= require _jquery.tablesorter/jquery.tablesorter
+//= require _jquery.tablesorter/jquery.tablesorter.min
 //= require_tree .
