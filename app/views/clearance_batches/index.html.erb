@@ -25,7 +25,7 @@ $(function() {
 </script>
 
 <h2>Clearance Batches</h2>
-
+<div class="nav_link" style="float: right;"><%= link_to "See all Items", items_path %></div>
 <%= form_tag(clearance_batches_path, multipart: true, class: 'form-inline', role: 'form') do %>
   <div class="form-group">
     <%= label_tag 'csv_batch_file', 'Select batch file' %>
