@@ -5,7 +5,7 @@ class ClearancingService
   def process_file(uploaded_file)
     clearancing_status      = create_clearancing_status
     CSV.foreach(uploaded_file, headers: false) do |row|  
-      potential_item_id = row[0].to_i
+      potential_item_id = handle_integer_conversion(row[0])
       clearancing_status = process_item(potential_item_id, clearancing_status)
     end
 
@@ -17,7 +17,7 @@ class ClearancingService
     items = list.split(",")
     items.reject! { |c| c.empty? }
     items.each {|item|
-      item = item.to_i if !(Integer(item) rescue nil).nil?
+      item = handle_integer_conversion(item)
       clearancing_status = process_item(item, clearancing_status)
     }
     clearance_items!(clearancing_status) 
@@ -25,6 +25,11 @@ class ClearancingService
   
 private
 
+# I don't like returning a 0 if id isn't Numeric nor the mistake of an integer rounding error on a float.
+  def handle_integer_conversion(id) 
+    (Integer(id) rescue nil).nil? || id.to_i.to_s != id.to_s ? id : id.to_i
+  end
+  
   def process_item(item, clearancing_status) 
     clearancing_error = what_is_the_clearancing_error?(item)
     if clearancing_error
