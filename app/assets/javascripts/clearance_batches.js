@@ -36,7 +36,7 @@ function showAllEvent(event, link, path) {
             results += "<div style='padding:5px 0 0 15px;'>" + item.id + ": " + style.type + " - " + style.name + "(" + item.size + ") Sold At: $" + formatDollar(Number(item.price_sold)) + "</div>"
           });
   
-          $(link).closest("tr").parent().append("<tr id='items-" + item.clearance_batch_id +"'><td colspan='3'>" + results + "</td></tr>");
+          $(link).closest("tr").after("<tr id='items-" + item.clearance_batch_id +"'><td colspan='3'>" + results + "</td></tr>");
           link.innerHTML = "Hide Items";
           
         } // data.items.length > 0 
