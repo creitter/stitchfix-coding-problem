@@ -35,16 +35,13 @@ class ClearanceBatchesController < ApplicationController
       if !batch.nil?
         items = []
         batch.items.each {|item|
-
           items << {item: item, style: item.style}
         }
       end
     end
     
     items ||= []
-    
     render json: {items: items}, status: :ok
   end
-  
 
 end

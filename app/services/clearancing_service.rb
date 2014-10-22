@@ -25,7 +25,7 @@ class ClearancingService
   
 private
 
-# I don't like returning a 0 if id isn't Numeric nor the mistake of an integer rounding error on a float.
+  # I don't like returning a 0 if id isn't Numeric nor the mistake of an integer rounding error on a float.
   def handle_integer_conversion(id) 
     (Integer(id) rescue nil).nil? || id.to_i.to_s != id.to_s ? id : id.to_i
   end

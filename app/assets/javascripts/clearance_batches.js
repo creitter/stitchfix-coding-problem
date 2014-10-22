@@ -47,8 +47,13 @@ function showAllEvent(event, link, path) {
           $(link).closest("tr").after("<tr id='items-" + item.clearance_batch_id +"'><td colspan='3'>" + results + "</td></tr>");
           link.innerHTML = "Hide Items";
           
-        } // data.items.length > 0 
-      } // success handler
+        } else {
+          alert('Sorry no items were found for this batch id: ' + batch_id)
+        }// data.items.length > 0 
+      }, // success handler
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert("Sorry, we couldn't get the list of items. Error: " + errorThrown);
+      }
     }); //ajax call
     } //end batch_items.length > 0
 } // end showAllEvent function
