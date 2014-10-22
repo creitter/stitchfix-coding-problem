@@ -52,8 +52,5 @@ We'd like you to make some improvements, specifically:
 * If you need to make an assumption about a vague requirement, feel free, just state what it is.
 
 
-# Corinne's  Notes
-* Style.type should be normalized.
-
 # Corinne's  Assumptions
 * Users should be able to browse items and see them grouped by status or by batch. We want to show all items regardless in a batch or not.
