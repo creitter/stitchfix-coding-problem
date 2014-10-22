@@ -4,47 +4,44 @@ $(function() {
     showAllEvent(event, this, "<%= show_all_items_path %>")
   });
   
-  $('#scanned_item_add').click(function(event){
-    event.stopPropagation();
-    event.preventDefault();
-    $('#scanned_items').val($('#scanned_items').val() + "," + $('#scanned_item').val());
-    $('#scanned_item').val('');
+  $('#scanned_item_add').click(function(event) {
+    addScannedItem(event)
   });
-  
   
   $('#scanned_item').bind("enterKey",function(e){
     $('#scanned_item_add').click();
   });
 
   $('#scanned_item').keyup(function(e){
-      if(e.keyCode == 13) {
-        $(this).trigger("enterKey");
-      }
+    if(e.keyCode == 13) {
+      $(this).trigger("enterKey");
+    }
   });
 });
 </script>
 
 <h2>Clearance Batches</h2>
-<div class="nav_link" style="float: right;"><%= link_to "See all Items", items_path %></div>
-<%= form_tag(clearance_batches_path, multipart: true, class: 'form-inline', role: 'form') do %>
-  <div class="form-group">
-    <%= label_tag 'csv_batch_file', 'Select batch file' %>
-    <%= file_field_tag 'csv_batch_file', class: 'form-control' %>
-  </div>
-  <%= button_tag 'upload batch file', class: 'btn btn-primary' %>
-<% end %>
-
-<div style="padding:50px 0 ">
-OR <br>
-Enter/Scan in the barcode and it'll be added to the right.<br>
+<div class="barcode-uploader">
+<strong>Enter/Scan in the barcode</strong><br>
 <%= text_field_tag 'scanned_item' %>
-<%= button_tag 'Add', type:'button', id:'scanned_item_add' %>
+<%= button_tag 'Add', type:'button', id:'scanned_item_add', class: 'btn' %>
 
-<%= form_tag(clearance_batches_path, role: 'form', style: "display:inline") do %>
-  <%= text_area_tag 'scanned_items', nil, size: "35x10"%>
-  <%= button_tag 'Start Batch'%>
+<%= form_tag(clearance_batches_path, role: 'form') do %>
+  <%= text_area_tag 'scanned_items', nil, size: "22x10"%>
+  <br>
+  <%= button_tag 'Start Batch', class: 'btn btn-primary'%>
 <% end %>
 
+</div>
+
+<div class="file-uploader">
+  <%= form_tag(clearance_batches_path, multipart: true, class: 'form-inline', role: 'form') do %>
+    <div class="form-group">
+      <%= label_tag 'csv_batch_file', 'Select batch file' %>
+      <%= file_field_tag 'csv_batch_file', class: 'form-control' %>
+    </div>
+    <%= button_tag 'upload batch file', class: 'btn btn-primary' %>
+  <% end %>
 </div>
 
 <table class="table table-striped clearance_batches">

@@ -10,6 +10,13 @@
 
 <div class="container">
   <h1>Stitch Fix Clearance Tool</h1>
+  
+  <div class="nav_link">
+    <div><%= link_to "See all Items", items_path %></div>
+    <div><%= link_to "See Clearance Batches", clearance_batches_path %></div>
+  </div>
+
+  
   <%- if flash[:notice] -%>
     <div class="alert alert-info" role="alert">
       <%= flash[:notice].html_safe %>
